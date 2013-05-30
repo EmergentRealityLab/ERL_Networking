@@ -7,6 +7,8 @@ function Awake () {
 
 // Update is called once per frame
 function Update () {
+	if(networkView.isMine)
+	{
 	// Get the input vector from kayboard or analog stick
 	var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 	
@@ -30,6 +32,7 @@ function Update () {
 	// Apply the direction to the CharacterMotor
 	motor.inputMoveDirection = transform.rotation * directionVector;
 	motor.inputJump = Input.GetButton("Jump");
+	}
 }
 
 // Require a character controller to be attached to the same game object
