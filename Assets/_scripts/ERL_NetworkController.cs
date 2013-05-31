@@ -8,21 +8,27 @@ public class ERL_NetworkController : MonoBehaviour {
 	public int connectionPort = 25001;
 	
 	#endregion
-	
+	void Start() {
+		connectionIP = Network.player.ipAddress;
+	}
 
 	
 	void OnGUI() {
 		if (Network.peerType == NetworkPeerType.Disconnected) 
 		{
 			GUI.Label(new Rect(10,10,200,20), "Status: Disconnected");
-			if (GUI.Button(new Rect(10,30,120,20), "Client Connect")) 
-			{
-				Network.Connect(connectionIP, connectionPort);
-			}
-			if (GUI.Button(new Rect(10,50,120,20),"Initialize Server"))
+			if (GUI.Button(new Rect(10,30,120,20),"Initialize Server"))
 			{
 				Network.InitializeServer(8,connectionPort,false);
 			}
+			GUI.Label(new Rect(150,30,200,20), "IP: "+Network.player.ipAddress);
+			
+			if (GUI.Button(new Rect(10,60,120,20), "Client Connect")) 
+			{
+				Network.Connect(connectionIP, connectionPort);
+			}
+			connectionIP = GUI.TextField(new Rect(150, 60, 200, 20), connectionIP, 15);
+			
 		}
 		else if (Network.peerType == NetworkPeerType.Client)
 		{
@@ -34,11 +40,14 @@ public class ERL_NetworkController : MonoBehaviour {
 		}
 		else if (Network.peerType == NetworkPeerType.Server)
 		{
-			GUI.Label(new Rect(10,10,300,20), "Status: Connected as Server");
+			GUI.Label(new Rect(10,10,300,20), "Status: Running as Server ( "+Network.player.ipAddress+" )");
+			
 			if (GUI.Button(new Rect(10,30,120,20), "Disconnect"))
 			{
 				Network.Disconnect(200);
 			}
 		}
+		
+		
 	}
 }

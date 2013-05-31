@@ -4,6 +4,8 @@ using System.Collections;
 public class ERL_GameManager : MonoBehaviour {
 	
 	public GameObject player;
+	public GameObject Cam;
+	public Object netplayer;
 	
 	// Use this for initialization
 	void Start () {
@@ -13,7 +15,12 @@ public class ERL_GameManager : MonoBehaviour {
 	 void OnServerInitialized() {
 		if(Network.peerType == NetworkPeerType.Server)
 		{
-			GameObject.Instantiate(player);
+			netplayer = Network.Instantiate(player,new Vector3(0,2,0),Quaternion.identity,1);
+			//GameObject.Instantiate(player);
+			Cam.SendMessage("SetCameras");
 		}
+		
 	}
+
+	
 }

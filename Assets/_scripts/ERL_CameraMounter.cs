@@ -10,33 +10,40 @@ public class ERL_CameraMounter : MonoBehaviour {
 	};
 	
 	int selGridInt = 0;
+	int old_selGridInt =0;
+	
 	string[] selStrings = new string[] { "Left", "Right"};
 	
-	public Transform CenterCamMount;
-	public Transform LeftCamMount;
-	public Transform RightCamMount;
+	public GameObject C_Mount;
+	public GameObject L_Mount;
+	public GameObject R_Mount;
 	
 	//camType role = camType.center;
 	
-	// Use this for initialization
-	void OnServerInitialized() {
-	CenterCamMount = GameObject.Find("CenterCamMount").transform;
-	LeftCamMount = GameObject.Find("LeftCamMount").transform;
-	RightCamMount = GameObject.Find("RightCamMount").transform;
-	}
+
 	
 	
     void OnGUI() {
 		if(Network.peerType == NetworkPeerType.Client)
 		{
         	selGridInt = GUI.SelectionGrid(new Rect((Screen.width/2)-150, 10, 300, 20), selGridInt, selStrings, 2);
+			if(selGridInt != old_selGridInt)
+			{
+				old_selGridInt = selGridInt;
+				SetCameras();
+			}
 		}
+		
     }
 	
-	void Update () {
+	void SetCameras () {
+		C_Mount = GameObject.Find("CenterCamMount");
+		L_Mount = GameObject.Find("LeftCamMount");
+		R_Mount = GameObject.Find("RightCamMount");
+		
 		if(Network.peerType == NetworkPeerType.Server)
 		{
-			transform.parent = CenterCamMount;
+			transform.parent = C_Mount.transform;
 			transform.localPosition = new Vector3(0,0,0);
 			transform.localRotation = Quaternion.identity;
 		}
@@ -44,14 +51,14 @@ public class ERL_CameraMounter : MonoBehaviour {
 		{
 			if(selGridInt == 0)
 			{
-				transform.parent = LeftCamMount;
+				transform.parent = L_Mount.transform;
 				transform.localPosition = new Vector3(0,0,0);
 				transform.localRotation = Quaternion.identity;
 				
 			}
 			else if(selGridInt == 1)
 			{
-				transform.parent = RightCamMount;
+				transform.parent = R_Mount.transform;
 				transform.localPosition = new Vector3(0,0,0);
 				transform.localRotation = Quaternion.identity;
 			}
