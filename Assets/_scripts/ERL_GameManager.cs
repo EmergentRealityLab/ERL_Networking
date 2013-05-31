@@ -21,6 +21,27 @@ public class ERL_GameManager : MonoBehaviour {
 		}
 		
 	}
-
+	/*
+	void OnDisconnectedFromServer(NetworkDisconnection info) {
+        if (Network.isServer){
+            	Debug.Log("Local server connection disconnected");
+		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
+        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
+		}
+        else
+            if (info == NetworkDisconnection.LostConnection) {
+                Debug.Log("Lost connection to the server");
+		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
+        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
+		}
+            else {
+                Debug.Log("Successfully diconnected from the server");
+		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
+        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
+		}
+    }
+	
+	 */
+	
 	
 }

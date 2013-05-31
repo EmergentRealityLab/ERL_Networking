@@ -36,28 +36,49 @@ public class ERL_CameraMounter : MonoBehaviour {
 		
     }
 	
+	void OnDisconnectedFromServer(NetworkDisconnection info) {
+        if (Network.isServer)
+		{
+            Debug.Log("Local server connection disconnected");
+		transform.parent = null;
+		Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
+		Network.Destroy(C_Mount.transform.parent.gameObject);
+		}
+		
+        else
+            if (info == NetworkDisconnection.LostConnection){
+                Debug.Log("Lost connection to the server");
+				transform.parent = null;
+				//Network.RemoveRPCs(networkView.viewID);
+				Network.Destroy(C_Mount.transform.parent.gameObject);
+			}
+            else {
+                Debug.Log("Successfully diconnected from the server");
+		transform.parent = null;
+		//Network.RemoveRPCs(networkView.viewID);
+		Network.Destroy(C_Mount.transform.parent.gameObject);
+		}
+    }
+	
+	
 	void SetCameras () {
 		C_Mount = GameObject.Find("CenterCamMount");
 		L_Mount = GameObject.Find("LeftCamMount");
 		R_Mount = GameObject.Find("RightCamMount");
 		
-		if(Network.peerType == NetworkPeerType.Server)
-		{
+		if(Network.peerType == NetworkPeerType.Server){
 			transform.parent = C_Mount.transform;
 			transform.localPosition = new Vector3(0,0,0);
 			transform.localRotation = Quaternion.identity;
 		}
-		else if(Network.peerType == NetworkPeerType.Client)
-		{
-			if(selGridInt == 0)
-			{
+		else if(Network.peerType == NetworkPeerType.Client){
+			if(selGridInt == 0){
 				transform.parent = L_Mount.transform;
 				transform.localPosition = new Vector3(0,0,0);
 				transform.localRotation = Quaternion.identity;
 				
 			}
-			else if(selGridInt == 1)
-			{
+			else if(selGridInt == 1){
 				transform.parent = R_Mount.transform;
 				transform.localPosition = new Vector3(0,0,0);
 				transform.localRotation = Quaternion.identity;

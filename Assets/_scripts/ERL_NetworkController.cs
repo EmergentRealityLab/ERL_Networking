@@ -28,6 +28,10 @@ public class ERL_NetworkController : MonoBehaviour {
 				Network.Connect(connectionIP, connectionPort);
 			}
 			connectionIP = GUI.TextField(new Rect(150, 60, 200, 20), connectionIP, 15);
+			if (GUI.Button(new Rect(Screen.width-110,10,100,100), "Exit")) 
+			{
+				Application.Quit();
+			}
 			
 		}
 		else if (Network.peerType == NetworkPeerType.Client)
