@@ -21,7 +21,7 @@ public class ERL_NetworkController : MonoBehaviour {
 			{
 				Network.InitializeServer(8,connectionPort,false);
 			}
-			GUI.Label(new Rect(150,30,200,20), "IP: "+Network.player.ipAddress);
+			GUI.Label(new Rect(150,30,200,20), "Current IP: "+Network.player.ipAddress);
 			
 			if (GUI.Button(new Rect(10,60,120,20), "Client Connect")) 
 			{
