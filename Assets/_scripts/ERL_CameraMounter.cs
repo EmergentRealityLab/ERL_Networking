@@ -47,7 +47,7 @@ public class ERL_CameraMounter : MonoBehaviour {
             Debug.Log("Local server connection disconnected");
 		transform.parent = null;
 		Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
-		Network.Destroy(C_Mount.transform.parent.gameObject);
+		Destroy(C_Mount.transform.parent.gameObject);
 		}
 		
         else

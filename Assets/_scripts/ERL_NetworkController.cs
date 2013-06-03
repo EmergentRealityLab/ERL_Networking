@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class ERL_NetworkController : MonoBehaviour {
 	
 	#region public vars
