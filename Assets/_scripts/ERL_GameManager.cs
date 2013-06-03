@@ -3,14 +3,16 @@ using System.Collections;
 
 public class ERL_GameManager : MonoBehaviour {
 	
+	#region public vars
 	public GameObject player;
 	public GameObject Cam;
-	public Object netplayer;
+	#endregion
 	
-	// Use this for initialization
-	void Start () {
-		
-	}
+	#region private vars
+	private Object netplayer;
+	
+	#endregion
+	
 	
 	 void OnServerInitialized() {
 		if(Network.peerType == NetworkPeerType.Server)
@@ -21,27 +23,11 @@ public class ERL_GameManager : MonoBehaviour {
 		}
 		
 	}
-	/*
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
-        if (Network.isServer){
-            	Debug.Log("Local server connection disconnected");
-		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
-        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
-		}
-        else
-            if (info == NetworkDisconnection.LostConnection) {
-                Debug.Log("Lost connection to the server");
-		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
-        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
-		}
-            else {
-                Debug.Log("Successfully diconnected from the server");
-		//Network.RemoveRPCs(GameObject.FindGameObjectWithTag("Player"));
-        	Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
-		}
-    }
-	
-	 */
+		//I don't know if this is strictly necessary but it seems like a good thing to do.
+		netplayer = null;
+	}
+
 	
 	
 }

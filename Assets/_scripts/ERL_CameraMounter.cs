@@ -18,12 +18,11 @@ public class ERL_CameraMounter : MonoBehaviour {
 	
 	#endregion
 	
-	
-    void OnGUI() {
+	void OnGUI() {
 		if(Network.peerType == NetworkPeerType.Client || Network.peerType == NetworkPeerType.Server) {
 			if(menuFoldout){
-				GUI.Label(new Rect(Screen.width-220,10,200,20), "Camera:");
-				selGridInt = GUI.SelectionGrid(new Rect(Screen.width-220, 30, 100, 80), selGridInt, selStrings, 1);
+				GUI.Label(new Rect(Screen.width-110,30,200,20), "Camera:");
+				selGridInt = GUI.SelectionGrid(new Rect(Screen.width-110, 50, 100, 80), selGridInt, selStrings, 1);
 				if(selGridInt != old_selGridInt)
 				{
 					old_selGridInt = selGridInt;
@@ -42,26 +41,21 @@ public class ERL_CameraMounter : MonoBehaviour {
     }
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
-        if (Network.isServer)
-		{
-            Debug.Log("Local server connection disconnected");
-		transform.parent = null;
-		Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
-		Destroy(C_Mount.transform.parent.gameObject);
-		}
-		
-        else
-            if (info == NetworkDisconnection.LostConnection){
-                Debug.Log("Lost connection to the server");
+	        if (Network.isServer) {
+				//Debug.Log("Local server connection disconnected");
+				transform.parent = null;
+				Network.Destroy(GameObject.FindGameObjectWithTag("Player"));
+				Destroy(C_Mount.transform.parent.gameObject);
+			} else if (info == NetworkDisconnection.LostConnection){
+				//Debug.Log("Lost connection to the server");
+				transform.parent = null;
+				Network.Destroy(C_Mount.transform.parent.gameObject);
+			} else {
+				//Debug.Log("Successfully diconnected from the server");
 				transform.parent = null;
 				Network.Destroy(C_Mount.transform.parent.gameObject);
 			}
-            else {
-                Debug.Log("Successfully diconnected from the server");
-		transform.parent = null;
-		Network.Destroy(C_Mount.transform.parent.gameObject);
 		}
-    }
 	
 	/// <summary>
 	/// Identify the camera mountpoints and attach itself as a child of the appropriate one.
