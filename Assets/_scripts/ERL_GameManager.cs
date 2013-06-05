@@ -9,7 +9,7 @@ public class ERL_GameManager : MonoBehaviour {
 	#endregion
 	
 	#region private vars
-	private Object netplayer;
+	//private Object netplayer;
 	
 	#endregion
 	
@@ -17,7 +17,8 @@ public class ERL_GameManager : MonoBehaviour {
 	 void OnServerInitialized() {
 		if(Network.peerType == NetworkPeerType.Server)
 		{
-			netplayer = Network.Instantiate(player,new Vector3(0,2,0),Quaternion.identity,1);
+			//netplayer = 
+				Network.Instantiate(player,new Vector3(0,2,0),Quaternion.identity,1);
 			//GameObject.Instantiate(player);
 			Cam.SendMessage("SetCameras");
 		}
@@ -25,7 +26,7 @@ public class ERL_GameManager : MonoBehaviour {
 	}
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
 		//I don't know if this is strictly necessary but it seems like a good thing to do.
-		netplayer = null;
+		//netplayer = null;
 	}
 
 	
