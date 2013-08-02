@@ -20,7 +20,7 @@ public class ClickOnThings : MonoBehaviour {
 				{
 					Debug.Log(hit.collider);
 					selected = hit.collider.gameObject;
-					hit.collider.gameObject.SendMessage ("OnClick", SendMessageOptions.DontRequireReceiver);	
+					hit.collider.gameObject.BroadcastMessage ("OnClick", SendMessageOptions.DontRequireReceiver);	
 				}
 			}
 		}
@@ -29,7 +29,7 @@ public class ClickOnThings : MonoBehaviour {
 		{
 			if (selected != null)
 			{
-				selected.SendMessage("OnRelease",SendMessageOptions.DontRequireReceiver);
+				selected.BroadcastMessage("OnRelease",SendMessageOptions.DontRequireReceiver);
 				selected=null;
 			}
 		}

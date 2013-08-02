@@ -14,7 +14,7 @@ public class ClickGrow : MonoBehaviour {
 	}
 	
 	void OnClick () {
-		transform.localScale= new Vector3(2.0f,2.0f,2.0f);	
+		transform.localScale= new Vector3(1.25f,1.25f,1.25f);	
 	}
 	
 	void OnRelease () {
