@@ -1,0 +1,3 @@
+ -Xms64m -Xmx1024m
+p1013a_terrainExplorer
+p1013a_terrainExplorer.jar,core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-windows-amd64.jar,gluegen-rt-natives-windows-amd64.jar
