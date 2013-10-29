@@ -9,7 +9,7 @@ int camPjCol, camPjRow;
 
 Terrain tr;
 boolean inTl;
-String path = "F:/Personal/Project/2013/p1025b_terrainExplorer_splitScreen/data/texture.jpg";
+String path = "E:/Processing Frustum Calibration/p1025b_terrainExplorer_splitScreen/data/texture.jpg";
 
 static public void main(String args[]) {
   Frame frame = new Frame("testing");
@@ -19,15 +19,16 @@ static public void main(String args[]) {
   PApplet applet = new p1025b_terrainExplorer_splitScreen();
   frame.add(applet);
   applet.init();
-  frame.setBounds(0, 0, 3840, 1080); 
+  frame.setBounds(0, 0, 5760, 1080); 
   frame.setVisible(true);
 }
 
 void setup() {
-  size(3840, 1080, P3D);
+  size(5760, 1080, P3D);
   smooth(8);
   frameRate(30);
   background(255);
+  noCursor();
 
   tr = new Terrain(40, 40, 100, 0.1, 1250, path);//int cols, int rows, float cellSize, float noiseIncreRatio, float yRange, String path
 
