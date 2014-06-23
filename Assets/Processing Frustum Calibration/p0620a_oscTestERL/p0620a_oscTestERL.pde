@@ -17,7 +17,7 @@ float theta, phi;
 Ball [] balls;
 
 void setup() {
-  size(1920, 1080, P3D);
+  size(3840, 1080, P3D);
   smooth(8);
   frameRate(30);
   
@@ -30,8 +30,8 @@ void setup() {
   cp = new ControlPanel(this);
 
   //Initialize camera
-  camL = new PVector(-50, -height/8, height/2);
-  camR = new PVector(50, -height/8, height/2);
+  camL = new PVector(-2, -height/8, height/2);
+  camR = new PVector(2, -height/8, height/2);
   camFacingL = new PVector(0, 0, 0);
   camFacingR = new PVector(0, 0, 0);
   camOffset = new PVector(0, 0, 0);
@@ -40,7 +40,7 @@ void setup() {
   phi = radians(270);
   
   //Initialize balls
-  balls = new Ball[40];
+  balls = new Ball[200];
   for(int i=0; i<balls.length; i++){
     balls[i] = new Ball();
   }
@@ -58,6 +58,9 @@ void draw() {
   camFacingR = PVector.add(camR, camOffset);
 
   background(255);
+  for(int i=0; i<balls.length; i++){
+    balls[i].update();
+  }
   
   left.beginDraw();
   left.smooth(8);
@@ -96,7 +99,7 @@ void draw() {
   right.endDraw();
   
   image(left, 0, 0);
-  image(right, width, 0);
+  image(right, 1920, 0);
   cp.display();
 }
 
@@ -113,10 +116,10 @@ void oscEvent(OscMessage theOscMessage) {
       float x = float(fs[0])* cp.vMtpX + cp.vOftX;
       float y = float(fs[2])* cp.vMtpY + cp.vOftY;
       float z = float(fs[1])* cp.vMtpZ + cp.vOftZ;
-      camL.x = x-50;
+      camL.x = x-2;
       camL.y = y;
       camL.z = z;
-      camR.x = x+50;
+      camR.x = x+2;
       camR.y = y;
       camR.z = z;
       /*float rx = float(fs[3])* cp.vMtpRX + cp.vOftRX;
