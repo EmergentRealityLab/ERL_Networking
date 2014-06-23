@@ -9,15 +9,14 @@ class Ball{
     radius = random(10,50);
     colorMode(HSB);
     c = color(random(255), random(255), 255);
-    sphereDetail(20);
   }
   
-  void display(){
-    pushMatrix();
-    translate(loc.x, loc.y, loc.z);
-    noStroke();
-    fill(c);
-    sphere(radius);
-    popMatrix();
+  void display(PGraphics pg){
+    pg.pushMatrix();
+    pg.translate(loc.x, loc.y, loc.z);
+    pg.noStroke();
+    pg.fill(c);
+    pg.sphere(radius);
+    pg.popMatrix();
   }
 }

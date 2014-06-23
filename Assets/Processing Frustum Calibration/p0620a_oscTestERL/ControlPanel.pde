@@ -135,13 +135,15 @@ class ControlPanel {
   private void autoFormatMtp(Numberbox mtp) {
     mtp.setSize(40, 40)
       .setMultiplier(0.05)
-        .setScrollSensitivity(1.1);
+        .setScrollSensitivity(1.1)
+          .setColorLabel(0);
   }
 
   private void autoFormatOft(Numberbox oft) {
     oft.setSize(40, 40)
       .setMultiplier(0.5)
-        .setScrollSensitivity(1.1);
+        .setScrollSensitivity(1.1)
+          .setColorLabel(0);
   }
 }
 
