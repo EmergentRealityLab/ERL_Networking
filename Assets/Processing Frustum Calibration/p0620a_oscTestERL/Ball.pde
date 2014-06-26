@@ -14,7 +14,7 @@ class Ball{
     xSeed = random(100);
     ySeed = random(100);
     zSeed = random(100);
-    range = random(100, 1000);
+    range = random(50, 200);
     seedIncre = random(0.002, 0.01);
   }
   

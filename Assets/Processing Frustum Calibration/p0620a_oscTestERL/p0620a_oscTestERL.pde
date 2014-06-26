@@ -14,6 +14,11 @@ float coordsLength = 300;
 PVector camL, camR, camFacingL, camFacingR, camOffset;
 float theta, phi;
 
+float frustumH = 96;
+float frustumV = frustumH*1080.0/1920.0;
+float frustumD = 54;
+float eyeOffset = 2;
+
 Ball [] balls;
 
 void setup() {
@@ -30,8 +35,8 @@ void setup() {
   cp = new ControlPanel(this);
 
   //Initialize camera
-  camL = new PVector(-2, -height/8, height/2);
-  camR = new PVector(2, -height/8, height/2);
+  camL = new PVector(-eyeOffset, -height/8, height/2);
+  camR = new PVector(eyeOffset, -height/8, height/2);
   camFacingL = new PVector(0, 0, 0);
   camFacingR = new PVector(0, 0, 0);
   camOffset = new PVector(0, 0, 0);
@@ -74,6 +79,7 @@ void draw() {
   left.directionalLight(255, 255, 255, 0.5, 0.5, -1); 
   left.lightFalloff(1, 0, 0);
   left.lightSpecular(0, 0, 0);
+  left.frustum(-frustumH+eyeOffset, frustumH+eyeOffset, -frustumV, frustumV, frustumD, frustumD*100);
   for(int i=0; i<balls.length; i++){
     balls[i].display(left);
   }
@@ -92,6 +98,7 @@ void draw() {
   right.directionalLight(255, 255, 255, 0.5, 0.5, -1); 
   right.lightFalloff(1, 0, 0);
   right.lightSpecular(0, 0, 0);
+  right.frustum(-frustumH-eyeOffset, frustumH-eyeOffset, -frustumV, frustumV, frustumD, frustumD*100);
   for(int i=0; i<balls.length; i++){
     balls[i].display(right);
   }
@@ -116,10 +123,10 @@ void oscEvent(OscMessage theOscMessage) {
       float x = float(fs[0])* cp.vMtpX + cp.vOftX;
       float y = float(fs[2])* cp.vMtpY + cp.vOftY;
       float z = float(fs[1])* cp.vMtpZ + cp.vOftZ;
-      camL.x = x-2;
+      camL.x = x-eyeOffset;
       camL.y = y;
       camL.z = z;
-      camR.x = x+2;
+      camR.x = x+eyeOffset;
       camR.y = y;
       camR.z = z;
       /*float rx = float(fs[3])* cp.vMtpRX + cp.vOftRX;
