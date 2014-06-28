@@ -15,15 +15,15 @@ class ControlPanel {
 
     cp5 = new ControlP5(pa);
     
-    vMtpX = 50;
-    vMtpY = -50;
-    vMtpZ = -50;
+    vMtpX = 200;
+    vMtpY = -200;
+    vMtpZ = -200;
     vMtpRX = 1;
     vMtpRY = 1;
     vMtpRZ = 1;
     vOftX = 0;
-    vOftY = 0;//height*0.125;
-    vOftZ = height*0.25;
+    vOftY = height*0.125;
+    vOftZ = height*0.5;
     vOftRX = 0;
     vOftRZ = 0;
     vOftRY = 0;

@@ -6,16 +6,16 @@ class Ball{
   float xSeed, ySeed, zSeed, seedIncre, range;
   
   Ball(){
-    initLoc = new PVector(random(-400,400), random(-400,400), random(-800,800));
+    initLoc = new PVector(random(-600,600), random(-600,600), random(-800,800));
     loc = new PVector(initLoc.x, initLoc.y, initLoc.z);
-    radius = random(5,25);
+    radius = random(5,50);
     colorMode(HSB);
     c = color(random(255), random(255), 255);
     xSeed = random(100);
     ySeed = random(100);
     zSeed = random(100);
-    range = random(50, 200);
-    seedIncre = random(0.002, 0.01);
+    range = random(10, 50);
+    seedIncre = random(0.002, 0.02);
   }
   
   void update(){
