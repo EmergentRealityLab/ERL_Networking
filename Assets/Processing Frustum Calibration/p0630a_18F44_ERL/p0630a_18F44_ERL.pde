@@ -130,3 +130,27 @@ void draw() {
   image(right, 1920, 0);
   cp.display();
 }
+
+void oscEvent(OscMessage theOscMessage) {
+  if (theOscMessage.checkAddrPattern("/visor")) {
+    String s1 = theOscMessage.get(0).stringValue();
+    //String s2 = theOscMessage.get(1).stringValue();
+    //String s3 = theOscMessage.get(2).stringValue();
+    //println("s1: " + s1);
+    //println("s2: " + s2);
+    //println("s3: " + s3);
+    String [] fs = splitTokens(s1, " ");
+    if (frameCount>0) {
+      camL.x = float(fs[0])* cp.vMtpX + cp.vOftX - eyeOffset;
+      camL.y = float(fs[2])* cp.vMtpY + cp.vOftY;
+      camL.z = float(fs[1])* cp.vMtpZ + cp.vOftZ;
+
+      /*float rx = float(fs[3])* cp.vMtpRX + cp.vOftRX;
+       float ry = float(fs[4])* cp.vMtpRY + cp.vOftRY;
+       float rz = float(fs[5])* cp.vMtpRZ + cp.vOftRZ;
+       data = "x: " + x + "   y: " + y + "   z: " + z + "   rx: " + rx + "   ry: " + ry + "   rz: " + rz;
+       if(frameCount%30 == 0) println(data);*/
+    }
+  }
+  //println("### received an osc message. with address pattern "+ theOscMessage.addrPattern()+" typetag "+ theOscMessage.typetag());
+}
