@@ -15,18 +15,18 @@ class ControlPanel {
 
     cp5 = new ControlP5(pa);
     
-    vMtpX = 200;
-    vMtpY = -200;
-    vMtpZ = -200;
+    vMtpX = 222.32;
+    vMtpY = -222.32;
+    vMtpZ = -222.32;
     vMtpRX = 1;
     vMtpRY = 1;
     vMtpRZ = 1;
     vOftX = 0;
-    vOftY = height*0.125;
-    vOftZ = height*0.5;
+    vOftY = -10;
+    vOftZ = 474;
     vOftRX = 0;
-    vOftRZ = 0;
     vOftRY = 0;
+    vOftRZ = 0;
 
     mtp_X = cp5.addNumberbox("mtp_X")
       .plugTo(this, "vMtpX")

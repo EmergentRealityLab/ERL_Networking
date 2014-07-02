@@ -14,10 +14,8 @@ float coordsLength = 300;
 PVector camL, camR, camFacingL, camFacingR, camOffset;
 float theta, phi;
 
-float frustumH = 48;
-float frustumV = frustumH*1080.0/1920.0;
-float frustumD = 54;
-float eyeOffset = 2;
+float fLeft, fRight, fTop, fBottom, fNear, fFar;
+float eyeOffset = 5;
 
 void setup() {
   size(3840, 1080, P3D);
@@ -52,11 +50,11 @@ void draw() {
 
   camOffset.set(100*sin(theta)*cos(phi), 100*cos(theta), 100*sin(theta)*sin(phi));
 
-  background(255);
+  background(0);
 
   left.beginDraw();
   left.smooth(8);
-  left.background(255);
+  left.background(0);
   left.pushMatrix();
   left.translate(left.width*.5, left.height*.5);
   camFacingL = PVector.add(camL, camOffset);
@@ -69,14 +67,22 @@ void draw() {
   left.directionalLight(255, 255, 255, 0.5, 0.5, -1);  
   left.lightFalloff(1, 0, 0);
   left.lightSpecular(0, 0, 0);
-  left.frustum(-frustumH+eyeOffset, frustumH+eyeOffset, -frustumV, frustumV, frustumD, frustumD*100);
+  
+  fNear = camL.z*0.1;//47.4
+  fFar = camL.z*100;//4740
+  fLeft = -(480+camL.x)*0.1;
+  fRight = (480-camL.x)*0.1;
+  fTop = (540+camL.y)*0.1;
+  fBottom = camL.y*0.1;
+  
+  left.frustum(fLeft, fRight, fBottom, fTop, fNear, fFar);
   drawScreen(left);
   left.popMatrix();
   left.endDraw();
 
   right.beginDraw();
   right.smooth(8);
-  right.background(255);
+  right.background(0);
   right.pushMatrix();
   right.translate(right.width*.5, right.height*.5);
   camFacingR = PVector.add(camR, camOffset);
@@ -86,14 +92,22 @@ void draw() {
   right.directionalLight(255, 255, 255, 0.5, 0.5, -1);
   right.lightFalloff(1, 0, 0);
   right.lightSpecular(0, 0, 0);
-  right.frustum(-frustumH-eyeOffset, frustumH-eyeOffset, -frustumV, frustumV, frustumD, frustumD*100);
+  
+  fNear = camR.z*0.1;//47.4
+  fFar = camR.z*100;//4740
+  fLeft = -(480+camR.x)*0.1;
+  fRight = (480-camR.x)*0.1;
+  fTop = (540+camR.y)*0.1;
+  fBottom = camR.y*0.1;
+  
+  right.frustum(fLeft, fRight, fBottom, fTop, fNear, fFar);
   drawScreen(right);
   right.popMatrix();
   right.endDraw();
 
 
   image(left, 0, 0);
-  image(right, 1920, 0);
+  image(left, 1920, 0);
   cp.display();
 }
 
