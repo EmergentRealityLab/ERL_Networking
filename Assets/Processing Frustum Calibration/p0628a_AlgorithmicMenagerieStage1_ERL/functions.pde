@@ -8,7 +8,7 @@ void drawCoords(PGraphics pg) {
   pg.line(0, 0, 0, 0, coordsLength, 0);//Axis Y
   pg.stroke(255, 0, 0);
   pg.line(0, 0, 0, 0, 0, coordsLength);//Axis Z
-  pg.stroke(255, 100);
+  pg.stroke(0, 100);
   //Plane
   pg.beginShape();
   pg.vertex(coordsLength/2, 0, coordsLength/2);

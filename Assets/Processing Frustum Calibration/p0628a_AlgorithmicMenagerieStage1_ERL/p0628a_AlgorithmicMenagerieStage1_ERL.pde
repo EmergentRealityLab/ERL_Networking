@@ -97,7 +97,7 @@ void draw() {
   left.beginDraw();
   left.smooth(8);
   left.sphereDetail(20);
-  left.background(0);
+  left.background(255);
   left.pushMatrix();
   left.translate(left.width*.5, left.height*.5);
   camFacingL = PVector.add(camL, camOffset);
@@ -124,7 +124,7 @@ void draw() {
   right.beginDraw();
   right.smooth(8);
   right.sphereDetail(20);
-  right.background(0);
+  right.background(255);
   right.pushMatrix();
   right.translate(right.width*.5, right.height*.5);
   camFacingR = PVector.add(camR, camOffset);

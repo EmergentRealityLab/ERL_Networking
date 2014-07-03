@@ -239,7 +239,7 @@ class CellEDF0 {
     float distToCam = abs((v1.loc.z+v2.loc.z)*0.5-camL.z);
     float alpha = map(distToCam, 216, 2700, 200, 0);
     float weight = map(distToCam, 216, 2700, 3, 0);
-    pg.stroke(255, alpha);
+    pg.stroke(0, alpha);
     pg.strokeWeight(weight);
     pg.line(v1.loc.x, v1.loc.y, v1.loc.z, v2.loc.x, v2.loc.y, v2.loc.z);
   }

@@ -79,7 +79,7 @@ class Grid {
       float distToCam = abs(vertex.z-camL.z);
       float alpha = map(distToCam, 216, 2700, 255, 0);
       float weight = map(distToCam, 216, 2700, 5, 0);
-      pg.stroke(255, alpha);
+      pg.stroke(0, alpha);
       pg.strokeWeight(weight);
       pg.point(vertex.x, vertex.y, vertex.z);
     }
@@ -101,7 +101,7 @@ class Grid {
     float distToCam = abs((v1.z+v2.z)*0.5-camL.z);
     float alpha = map(distToCam, 216, 2700, 100, 0);
     float weight = map(distToCam, 216, 2700, 2, 0);
-    pg.stroke(255, alpha);
+    pg.stroke(0, alpha);
     pg.strokeWeight(weight);
     pg.line(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
   }
