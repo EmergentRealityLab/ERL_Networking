@@ -64,7 +64,7 @@ void setup() {
   wallTtL = createGraphics(570, 270, P2D);
   wallTtR = createGraphics(570, 270, P2D);
 
-  portal = loadImage("F:/Personal/Project/2014/p0707a_shootingSpheres_ERL/data/portal.png");
+  portal = loadImage("E:/UnityProjects/ERL_Networking/Assets/Processing Frustum Calibration/p0707a_shootingSpheres_ERL/data/portal.png");
 
   //Initialize sonification
   ac = new AudioContext();
