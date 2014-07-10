@@ -47,6 +47,8 @@ class Sphere {
     colorMode(HSB);
     c = color(random(255), random(255), 255);
 
+    int randInt = floor(random(0, 4));
+
     //Initial sonification
     gGlideH = new Glide(ac, 0.0, 50);
     gGlideV = new Glide(ac, 0.0, 50);
@@ -126,7 +128,7 @@ class Sphere {
   }
 
   private void checkEdge() {
-    if (loc.z<0 && loc.z>-1200) {
+    if (loc.z<0) {
       if (loc.x > 480+radiusT*2) {
         loc.x = -480-radiusT;
         PVector dir = new PVector(5, 0, 0);
@@ -144,6 +146,12 @@ class Sphere {
       } else if (loc.y < -540-radiusT*2) {
         loc.y = 0+radiusT;
         PVector dir = new PVector(0, -5, 0);
+        acc.add(dir);
+      }
+
+      if (loc.z < -1140+radiusT*1.5) {
+        float force = (radiusT*1.5-(loc.z+1140))/(radiusT*1.5)*50;
+        PVector dir = new PVector(0, 0, force);
         acc.add(dir);
       }
 
@@ -210,7 +218,7 @@ class Sphere {
   void display(PGraphics pg) {
     pg.fill(255);
     //pg.noStroke();
-    pg.stroke(0,128);
+    pg.stroke(0, 128);
     pg.strokeWeight(1);
     //pg.sphereDetail(10);
 
@@ -242,7 +250,7 @@ class Sphere {
       pg.vertex(vs[0][0].x, vs[0][0].y, vs[0][0].z);
       pg.vertex(vs[1][j].x, vs[1][j].y, vs[1][j].z);
       pg.vertex(vs[1][nextJ].x, vs[1][nextJ].y, vs[1][nextJ].z);
-      
+
       pg.vertex(vs[rows-1][0].x, vs[rows-1][0].y, vs[rows-1][0].z);
       pg.vertex(vs[rows-2][j].x, vs[rows-2][j].y, vs[rows-2][j].z);
       pg.vertex(vs[rows-2][nextJ].x, vs[rows-2][nextJ].y, vs[rows-2][nextJ].z);
