@@ -23,14 +23,14 @@ float eyeOffset = 5;
 ArrayList<Sphere> spheres; //Spheres
 Wall wallT, wallB, wallL, wallR; //Four walls
 PGraphics wallTtT, wallTtB, wallTtL, wallTtR;//Four walls textures
-PImage portal;
+PImage portal, bg;
 
 //Sonification
 AudioContext ac;
 Gain masterG;
 
 void setup() {
-  size(3840, 1080, P3D);
+  size(3820, 1080, P3D);
   smooth(8);
   frameRate(30);
 
@@ -64,7 +64,8 @@ void setup() {
   wallTtL = createGraphics(570, 270, P2D);
   wallTtR = createGraphics(570, 270, P2D);
 
-  portal = loadImage("F:/Personal/Project/2014/p0707a_shootingSpheres_ERL/data/portal.png");
+  portal = loadImage("F:/Personal/Project/2014/p0709a_shootingSpheres_reversed_ERL/data/portal.png");
+  bg = loadImage("F:/Personal/Project/2014/p0709a_shootingSpheres_reversed_ERL/data/bg.jpg");
 
   //Initialize sonification
   ac = new AudioContext();
@@ -94,22 +95,22 @@ void draw() {
   }
 
   wallTtT.beginDraw();
-  wallTtT.background(0);
+  wallTtT.background(255);
   wallT.update(spheres, wallTtT, "TOP");
   wallTtT.endDraw();
 
   wallTtB.beginDraw();
-  wallTtB.background(0);
+  wallTtB.background(255);
   wallB.update(spheres, wallTtB, "BOTTOM");
   wallTtB.endDraw();
 
   wallTtL.beginDraw();
-  wallTtL.background(0);
+  wallTtL.background(255);
   wallL.update(spheres, wallTtL, "LEFT");
   wallTtL.endDraw();
 
   wallTtR.beginDraw();
-  wallTtR.background(0);
+  wallTtR.background(255);
   wallR.update(spheres, wallTtR, "RIGHT");
   wallTtR.endDraw();
 
@@ -118,7 +119,10 @@ void draw() {
 
   left.beginDraw();
   left.smooth(8);
-  left.background(0);
+  left.background(255);
+  //left.hint(DISABLE_DEPTH_TEST);
+  //left.image(bg, 0, 0);
+  //left.hint(ENABLE_DEPTH_TEST);
   left.pushMatrix();
   left.translate(left.width*.5, left.height*.5);
   camFacingL = PVector.add(camL, camOffset);
@@ -126,10 +130,12 @@ void draw() {
   camR.x = camL.x + eyeOffset*2;
   camR.y = camL.y;
   camR.z = camL.z;
-  //left.ambientLight(100, 100, 100);
-  //left.directionalLight(255, 255, 255, 0.5, 0.5, -1);  
-  //left.lightFalloff(1, 0, 0);
-  //left.lightSpecular(0, 0, 0);
+  left.ambientLight(0, 0, 0);
+  left.directionalLight(255, 255, 255, 0, 0.5, -1);
+  left.pointLight(255, 255, 255, 0, 0, 0);
+  left.pointLight(255, 255, 255, 0, -540, 0);
+  left.lightFalloff(1, 0, 0);
+  left.lightSpecular(0, 0, 0);
 
   fNear = camL.z*0.1;//47.4
   fFar = camL.z*100;//4740
@@ -150,15 +156,17 @@ void draw() {
 
   right.beginDraw();
   right.smooth(8);
-  right.background(0);
+  right.background(255);
   right.pushMatrix();
   right.translate(right.width*.5, right.height*.5);
   camFacingR = PVector.add(camR, camOffset);
   right.camera(camR.x, camR.y, camR.z, camFacingR.x, camFacingR.y, camFacingR.z, 0, 1, 0);
-  //right.ambientLight(100, 100, 100);  
-  //right.directionalLight(255, 255, 255, 0.5, 0.5, -1);
-  //right.lightFalloff(1, 0, 0);
-  //right.lightSpecular(0, 0, 0);
+  right.ambientLight(0, 0, 0);
+  right.directionalLight(255, 255, 255, 0, 0.5, -1);
+  right.pointLight(255, 255, 255, 0, 0, 0);
+  right.pointLight(255, 255, 255, 0, -540, 0);
+  right.lightFalloff(1, 0, 0);
+  right.lightSpecular(0, 0, 0);
 
   fNear = camR.z*0.1;//47.4
   fFar = camR.z*100;//4740
@@ -183,6 +191,8 @@ void draw() {
 
   //Show control panel when it is activated
   cp.display();
+
+  //saveFrame("F:/Personal/Project/2014/p0709a_shootingSpheres_reversed_ERL/seq/seq-######.jpg");
 }
 
 void oscEvent(OscMessage theOscMessage) {

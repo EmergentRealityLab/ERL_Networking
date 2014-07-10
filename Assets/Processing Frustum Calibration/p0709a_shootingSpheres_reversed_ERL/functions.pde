@@ -65,7 +65,7 @@ static public void main(String args[]) {
   frame.setUndecorated(true);
   // The name "sketch_name" must match the name of your program
   //PApplet applet = new sketch_name();
-  PApplet applet = new p0707a_shootingSpheres_ERL();
+  PApplet applet = new p0709a_shootingSpheres_reversed_ERL();
   frame.add(applet);
   applet.init();
   frame.setBounds(0, 0, 3840, 1080); 

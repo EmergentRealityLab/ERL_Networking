@@ -71,7 +71,7 @@ class Wall {
       //Draw the horizontal texture
       pg.imageMode(CENTER);
       pg.noStroke();
-      pg.fill(255);
+      pg.fill(0);
       for (int k=0; k<spheres.size (); k++) {
         Sphere eachS = (Sphere)spheres.get(k);
         float mappedX = -eachS.loc.z*0.5;
@@ -110,7 +110,7 @@ class Wall {
       //Draw the vertical texture
       pg.imageMode(CENTER);
       pg.noStroke();
-      pg.fill(255);
+      pg.fill(0);
       for (int k=0; k<spheres.size (); k++) {
         Sphere eachS = (Sphere)spheres.get(k);
         float mappedX = -eachS.loc.z*0.5;
@@ -126,9 +126,10 @@ class Wall {
   }
 
   void display(PGraphics pg, PGraphics tTpg) {
-    pg.stroke(255, 128);
-    pg.fill(0);
+    pg.stroke(0, 128);
     pg.strokeWeight(1);
+    //pg.noStroke();
+    pg.fill(255);
     pg.beginShape(QUADS);
     pg.texture(tTpg);
     for (int i=0; i<rows-1; i++) {

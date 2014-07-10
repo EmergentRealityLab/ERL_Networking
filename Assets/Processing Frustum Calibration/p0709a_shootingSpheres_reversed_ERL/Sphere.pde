@@ -1,9 +1,9 @@
 class Sphere {
-  
+
   WavePlayer wpH, wpV;
   Gain gH, gV;
   Glide gGlideH, gGlideV, fGlideH, fGlideV;
-  
+
   int cols, rows, life;
   PVector loc, locT, vel, acc;
   PVector [][] vs;
@@ -46,13 +46,13 @@ class Sphere {
 
     colorMode(HSB);
     c = color(random(255), random(255), 255);
-    
+
     //Initial sonification
     gGlideH = new Glide(ac, 0.0, 50);
     gGlideV = new Glide(ac, 0.0, 50);
     fGlideH = new Glide(ac, 20, 50);
     fGlideV = new Glide(ac, 20, 50);
-    
+
     wpH = new WavePlayer(ac, fGlideH, Buffer.SINE);
     wpV = new WavePlayer(ac, fGlideV, Buffer.SINE);
     gH = new Gain(ac, 1, gGlideH);
@@ -76,16 +76,16 @@ class Sphere {
     diamB = lerp(diamB, diamBT, 0.25);
     diamL = lerp(diamL, diamLT, 0.25);
     diamR = lerp(diamR, diamRT, 0.25);
-    
+
     gGlideH.setValue((diamT+diamB)/(radiusT*1.25+25));
     gGlideV.setValue((diamL+diamR)/(radiusT*1.25+25));
 
     checkEdge();
     updateLoc();
-    
+
     fGlideH.setValue((480-abs(loc.x-0))/480.0*440);
     fGlideV.setValue((270-abs(loc.y+270))/270.0*440);
-    
+
     updateVertices();
   }
 
@@ -180,7 +180,7 @@ class Sphere {
         diamBT = 0;
         diamTT = 0;
       }
-    }else{
+    } else {
       diamBT = 0;
       diamTT = 0;
     }
@@ -208,9 +208,9 @@ class Sphere {
   }
 
   void display(PGraphics pg) {
-    pg.fill(0);
+    pg.fill(255);
     //pg.noStroke();
-    pg.stroke(255);
+    pg.stroke(0,128);
     pg.strokeWeight(1);
     //pg.sphereDetail(10);
 
