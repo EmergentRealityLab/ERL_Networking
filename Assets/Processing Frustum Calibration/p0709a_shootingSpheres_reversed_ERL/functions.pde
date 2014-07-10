@@ -26,7 +26,6 @@ void drawScreen(PGraphics pg) {
   wallB.display(pg, wallTtB);
   wallL.display(pg, wallTtL);
   wallR.display(pg, wallTtR);
-  wallF.display(pg, wallTtF);
   /*pg.stroke(255);
   pg.fill(0);
   pg.strokeWeight(3);

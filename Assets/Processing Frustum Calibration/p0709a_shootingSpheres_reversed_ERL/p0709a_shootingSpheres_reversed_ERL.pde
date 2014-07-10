@@ -21,8 +21,8 @@ float eyeOffset = 5;
 
 //Contents
 ArrayList<Sphere> spheres; //Spheres
-Wall wallT, wallB, wallL, wallR, wallF; //Four walls
-PGraphics wallTtT, wallTtB, wallTtL, wallTtR, wallTtF;//Four walls textures
+Wall wallT, wallB, wallL, wallR; //Four walls
+PGraphics wallTtT, wallTtB, wallTtL, wallTtR;//Four walls textures
 PImage portal, bg;
 
 //Sonification
@@ -54,20 +54,18 @@ void setup() {
 
   //Initialize contents
   spheres = new ArrayList<Sphere>();
-  wallT = new Wall(20, 17, "H", -480, -540, 0, 60);
-  wallB = new Wall(20, 17, "H", -480, 0, 0, 60);
-  wallL = new Wall(20, 10, "V", -480, -540, 0, 60);
-  wallR = new Wall(20, 10, "V", 480, -540, 0, 60);
-  wallF = new Wall(17, 10, "D", -480, -540, -1140, 60);
+  wallT = new Wall(20, 17, true, -480, -540, 0, 60);
+  wallB = new Wall(20, 17, true, -480, 0, 0, 60);
+  wallL = new Wall(20, 10, false, -480, -540, 0, 60);
+  wallR = new Wall(20, 10, false, 480, -540, 0, 60);
 
   wallTtT = createGraphics(570, 480, P2D);
   wallTtB = createGraphics(570, 480, P2D);
   wallTtL = createGraphics(570, 270, P2D);
   wallTtR = createGraphics(570, 270, P2D);
-  wallTtF = createGraphics(480, 270, P2D);
 
-  portal = loadImage("E:/UnityProjects/ERL_Networking/Assets/Processing Frustum Calibration/p0709a_shootingSpheres_reversed_ERL/data/portal.png");
-  bg = loadImage("E:/UnityProjects/ERL_Networking/Assets/Processing Frustum Calibration/p0709a_shootingSpheres_reversed_ERL/data/bg.jpg");
+  portal = loadImage("F:/Personal/Project/2014/p0709a_shootingSpheres_reversed_ERL/data/portal.png");
+  bg = loadImage("F:/Personal/Project/2014/p0709a_shootingSpheres_reversed_ERL/data/bg.jpg");
 
   //Initialize sonification
   ac = new AudioContext();
@@ -88,7 +86,7 @@ void draw() {
   //Update contents
   for (int i=0; i<spheres.size (); i++) {
     Sphere eachS = spheres.get(i);
-    eachS.setTarget(0, -270, -474);//0, -270, -474
+    eachS.setTarget(0, -270, -474);
     for (int j=i+1; j<spheres.size (); j++) {
       Sphere anotherS = spheres.get(j);
       eachS.repel(anotherS);
@@ -115,11 +113,6 @@ void draw() {
   wallTtR.background(255);
   wallR.update(spheres, wallTtR, "RIGHT");
   wallTtR.endDraw();
-  
-  wallTtF.beginDraw();
-  wallTtF.background(255);
-  wallF.update(spheres, wallTtF, "FAR");
-  wallTtF.endDraw();
 
   //Draw contents to left and right eye images
   background(0);
@@ -193,7 +186,7 @@ void draw() {
   right.endDraw();
 
 
-  image(left, 0, 0);
+  image(right, 0, 0);
   image(left, 1920, 0);
 
   //Show control panel when it is activated
